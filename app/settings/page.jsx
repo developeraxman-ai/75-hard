@@ -1,0 +1,38 @@
+import { AppShell } from '@/components/AppShell';
+import { AttemptControls } from '@/components/AttemptControls';
+import { NotificationSettings } from '@/components/NotificationSettings';
+import { ServerProblem } from '@/components/ServerProblem';
+import { connectDb } from '@/lib/db';
+import { requirePageUser } from '@/lib/page-auth';
+
+export default async function Settings() {
+  try {
+    await connectDb();
+  } catch (error) {
+    return <ServerProblem title="Settings setup incomplete" error={error} />;
+  }
+
+  const user = await requirePageUser();
+
+  return (
+    <AppShell title="Settings" kicker="No lying. No hiding. Adjust the command center.">
+      <div className="space-y-4">
+        <section className="card">
+          <p className="text-sm uppercase tracking-widest text-stone-500">Start date</p>
+          <p className="mt-1 text-2xl font-black">{new Date(user.startDate).toLocaleDateString()}</p>
+        </section>
+        <NotificationSettings settings={JSON.parse(JSON.stringify(user.notificationSettings))} />
+        <form action={async () => {
+          'use server';
+          const { clearSession } = await import('@/lib/auth');
+          await clearSession();
+          const { redirect } = await import('next/navigation');
+          redirect('/login');
+        }}>
+          <button className="btn-ghost w-full">Logout</button>
+        </form>
+        <AttemptControls />
+      </div>
+    </AppShell>
+  );
+}

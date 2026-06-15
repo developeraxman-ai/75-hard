@@ -1,0 +1,3 @@
+'use client'; import Link from 'next/link'; import {usePathname} from 'next/navigation';
+const items=[['/dashboard','Today'],['/journal','Journal'],['/impulse-lock','Impulse'],['/progress','Progress'],['/settings','Settings']];
+export function BottomNav(){const p=usePathname(); return <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-command-line bg-black/80 backdrop-blur"><div className="mx-auto grid max-w-2xl grid-cols-5">{items.map(([href,label])=><Link key={href} href={href} className={`py-3 text-center text-xs font-bold ${p===href?'text-command-gold':'text-stone-400'}`}>{label}</Link>)}</div></nav>}

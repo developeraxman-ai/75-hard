@@ -1,0 +1,1 @@
+'use client'; export function ConfirmDialog({label,message,onConfirm}){return <button className="btn-ghost w-full border-red-900 text-red-200" onClick={()=>confirm(message)&&onConfirm()}>{label}</button>}
