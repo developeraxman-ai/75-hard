@@ -1,0 +1,2 @@
+'use client'; import {ConfirmDialog} from './ConfirmDialog';
+export function AttemptControls(){return <div className="card space-y-3"><ConfirmDialog label="Reset challenge" message="Fail current attempt and start over today?" onConfirm={()=>fetch('/api/attempt',{method:'DELETE'}).then(()=>location.href='/dashboard')}/><button className="btn-primary w-full" onClick={()=>fetch('/api/attempt',{method:'POST',body:JSON.stringify({when:'today'})}).then(()=>location.href='/dashboard')}>Start new attempt</button></div>}

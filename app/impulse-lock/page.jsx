@@ -1,0 +1,1 @@
+import {AppShell} from '@/components/AppShell'; import {ImpulseLockTimer} from '@/components/ImpulseLockTimer'; export default function Impulse(){return <AppShell title="Impulse Lock" kicker="You are not saying no forever. You are saying no for 10 minutes."><ImpulseLockTimer/></AppShell>}

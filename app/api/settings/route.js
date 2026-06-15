@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server'; import {connectDb} from '@/lib/db'; import {requireUser} from '@/lib/auth'; import User from '@/models/User'; import {notificationSettingsSchema} from '@/schemas';
+export async function PATCH(req){ await connectDb(); const user=await requireUser(); const notificationSettings=notificationSettingsSchema.parse(await req.json()); await User.findByIdAndUpdate(user._id,{notificationSettings}); return NextResponse.json({ok:true}); }
