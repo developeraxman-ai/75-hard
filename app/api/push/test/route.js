@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server'; import {connectDb} from '@/lib/db'; import {requireUser} from '@/lib/auth'; import {configurePush,notificationCopy} from '@/lib/push';
+export async function POST(){ await connectDb(); const user=await requireUser(); const webpush=configurePush(); await Promise.all((user.pushSubscriptions||[]).map((s)=>webpush.sendNotification(s,JSON.stringify({title:'75 Command',body:notificationCopy.emergency,url:'/impulse-lock'})).catch(()=>null))); return NextResponse.json({ok:true}); }

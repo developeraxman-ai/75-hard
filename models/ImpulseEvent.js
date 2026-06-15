@@ -1,0 +1,3 @@
+import {Schema,models,model} from 'mongoose';
+const ImpulseEventSchema=new Schema({userId:{type:Schema.Types.ObjectId,ref:'User',required:true,index:true},attemptId:{type:Schema.Types.ObjectId,ref:'Attempt',required:true,index:true},date:{type:Date,required:true},dayNumber:{type:Number,required:true},type:{type:String,enum:['drink','smoke','skip_workout','junk_food','waste_money','doom_scroll','other'],required:true},intensity:{type:Number,min:1,max:10,required:true},trigger:String,timerStartedAt:Date,timerCompletedAt:Date,finalChoice:{type:String,enum:['contract','impulse',null],default:null},note:String},{timestamps:true});
+export default models.ImpulseEvent || model('ImpulseEvent',ImpulseEventSchema);

@@ -1,0 +1,1 @@
+import {AppShell} from '@/components/AppShell'; import {JournalForm} from '@/components/JournalForm'; export default function Journal(){return <AppShell title="Journal" kicker="Predict the enemy before it arrives."><JournalForm/></AppShell>}
