@@ -1,0 +1,2 @@
+import {BottomNav} from './BottomNav';
+export function AppShell({children,title,kicker}){return <main className="mx-auto min-h-dvh max-w-2xl px-4 pb-24 pt-6"><header className="mb-6"><p className="text-xs uppercase tracking-[0.35em] text-command-gold">75 Command</p><h1 className="mt-2 text-3xl font-black tracking-tight">{title}</h1>{kicker&&<p className="mt-2 text-stone-400">{kicker}</p>}</header>{children}<BottomNav/></main>}

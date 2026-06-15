@@ -1,0 +1,1 @@
+'use client'; export function WaterInput({value,onChange}){return <label className="text-sm text-stone-300">Litres<input className="input mt-2" type="number" step="0.1" min="0" value={value||0} onChange={e=>onChange(Number(e.target.value))}/></label>}
